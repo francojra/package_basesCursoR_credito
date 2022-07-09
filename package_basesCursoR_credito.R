@@ -87,8 +87,10 @@ cred5 <- cred1 %>%
 View(cred5)
 
 p4 <- ggplot(cred5, aes(x = fct_reorder(trabalho, med), y = med)) +
-  geom_col(fill = "#ff7f00", color = "black") +
+  geom_col(fill = "#e41a1c", color = "black") +
   geom_errorbar(aes(x = trabalho, y = med, ymin = med - se,
                     ymax = med + se), width = 0.2, size = 0.9) +
   labs(x = "Trabalho", y = "Renda")
 p4
+
+grid.arrange(p1, p2, p3, p4)
