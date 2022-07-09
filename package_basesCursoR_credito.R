@@ -42,8 +42,23 @@ cred2 <- cred1 %>%
 View(cred2)
 
 p1 <- ggplot(cred2, aes(x = fct_reorder(estado_civil, med), y = med)) +
-  geom_col(fill = "#7fc97f", color = "black") +
+  geom_col(fill = "#984ea3", color = "black") +
   geom_errorbar(aes(x = estado_civil, y = med, ymin = med - se,
                     ymax = med + se), width = 0.2, size = 0.9) +
   labs(x = "Estado Civil", y = "Despesas")
 p1
+
+cred3 <- cred1 %>%
+  group_by(trabalho) %>%
+  summarise(med = mean(despesas),
+            sd = sd(despesas),n = n(),
+            se = sd/sqrt(n)) %>%
+  drop_na()
+View(cred3)
+
+p2 <- ggplot(cred3, aes(x = fct_reorder(trabalho, med), y = med)) +
+  geom_col(fill = "#ff7f00", color = "black") +
+  geom_errorbar(aes(x = trabalho, y = med, ymin = med - se,
+                    ymax = med + se), width = 0.2, size = 0.9) +
+  labs(x = "Trabalho", y = "Despesas")
+p2
