@@ -80,8 +80,8 @@ p3
 
 cred5 <- cred1 %>%
   group_by(trabalho) %>%
-  summarise(med = mean(renda),
-            sd = sd(renda),n = n(),
+  summarise(med = mean(renda, na.rm = T),
+            sd = sd(renda, na.rm = T), n = n(),
             se = sd/sqrt(n)) %>%
   drop_na()
 View(cred5)
